@@ -1,0 +1,6 @@
+#bin and object files
+bin/
+obj/
+
+# firebase credentials
+firebase-adminsdk.json
