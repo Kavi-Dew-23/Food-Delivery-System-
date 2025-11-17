@@ -1,0 +1,22 @@
+﻿@page "/test"
+@inject HttpClient Http
+
+
+<h3>Backend TestConnection</h3>
+
+<button @onclick="CheckBackend">Check connection</button>
+
+@if(message!=null)
+{
+    <p>Rsponse: @message</p>
+}
+
+
+@code {
+    string? message;
+
+    private async Task CheckBackend()
+    {
+        message = await Http.GetStringAsync("test");
+    }
+}
