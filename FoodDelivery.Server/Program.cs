@@ -1,14 +1,20 @@
 using FirebaseAdmin;
+using FoodDelivery.Server.Services;
 using Google.Apis.Auth.OAuth2;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//register userservice 
+builder.Services.AddSingleton<UserService>();
+
 // Initialize firebase admin
 FirebaseApp.Create(new AppOptions()
 {
-    Credential = GoogleCredential.FromFile("firebase-adminsdk.json")
+    Credential = GoogleCredential.FromFile(
+        Path.Combine(AppContext.BaseDirectory, "firebase-adminsdk.json")
+    )
 });
 
 // Allow balzor client to connect to the backend

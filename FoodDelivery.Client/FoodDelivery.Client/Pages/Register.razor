@@ -1,6 +1,7 @@
 ﻿@page "/register"
 @using FoodDelivery.Client.Shared 
 @layout EmptyLayout
+@inject HttpClient Http
 
 <link href="css/pagestyles.css" rel="stylesheet" />
 
@@ -9,21 +10,52 @@
         <h3>Register</h3>
         <div class="form-group-register">
             <label>Name</label>
-            <input type="text" placeholder="Enter you Name" />
+            <input type="text" placeholder="Enter you Name" @bind="name" />
         </div>
         <div class="form-group-register">
             <label>Email</label>
-            <input type="text" placeholder="Enter you Email" />
+            <input type="text" placeholder="Enter you Email"  @bind="email"/>
         </div>
         <div class="form-group-register">
             <label>Password</label>
-            <input type="text" placeholder="Enter your password" />
+            <input type="password" placeholder="Enter your password" @bind="password"/>
         </div>
 
-        <button class="register-btn">Register</button>
+        <button class="register-btn" @onclick="RegisterUser">
+            Register
+        </button>
         <p class="register-text">
             Already have an account? <a href="/login">Login</a>
         </p>
 
     </div>
 </div>
+
+@code {
+        string name;
+        string email;
+        string password;
+        string message;
+
+
+    private async Task RegisterUser()
+    {
+        var request = new
+        {
+            Name = name,
+            Email = email,
+            Password = password
+        };
+
+        var response = await Http.PostAsJsonAsync("http://localhost:5130/User/register", request);
+
+        if(response.IsSuccessStatusCode)
+        {
+            message = "Registration Successful";
+        }
+        else
+        {
+            message = "Registration Failed";
+        }
+    }
+}
