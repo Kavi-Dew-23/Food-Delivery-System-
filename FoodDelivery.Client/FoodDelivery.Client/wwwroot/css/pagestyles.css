@@ -1,0 +1,10 @@
+﻿.page-background {
+    background-image: url('/images/register.svg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    height:100vh;
+    width:100vw;
+    display:flex;
+    justify-content:center;
+
+}
