@@ -1,7 +1,29 @@
 ﻿@page "/register"
+@using FoodDelivery.Client.Shared 
+@layout EmptyLayout
 
-<h3>Register</h3>
+<link href="css/pagestyles.css" rel="stylesheet" />
 
-@code {
+<div class="page-background">
+    <div class="register-card">
+        <h3>Register</h3>
+        <div class="form-group-register">
+            <label>Name</label>
+            <input type="text" placeholder="Enter you Name" />
+        </div>
+        <div class="form-group-register">
+            <label>Email</label>
+            <input type="text" placeholder="Enter you Email" />
+        </div>
+        <div class="form-group-register">
+            <label>Password</label>
+            <input type="text" placeholder="Enter your password" />
+        </div>
 
-}
+        <button class="register-btn">Register</button>
+        <p class="register-text">
+            Already have an account? <a href="/login">Login</a>
+        </p>
+
+    </div>
+</div>
