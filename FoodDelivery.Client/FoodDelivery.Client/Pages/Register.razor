@@ -2,6 +2,7 @@
 @using FoodDelivery.Client.Shared 
 @layout EmptyLayout
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <link href="css/pagestyles.css" rel="stylesheet" />
 
@@ -31,11 +32,19 @@
     </div>
 </div>
 
+@if(!string.IsNullOrEmpty(message))
+{
+    <div class="toast-top-right @toastClass">
+        @message
+    </div>
+}
+
 @code {
-        string name;
-        string email;
-        string password;
-        string message;
+    string name;
+    string email;
+    string password;
+    string message;
+    string toastClass = string.Empty;
 
 
     private async Task RegisterUser()
@@ -52,10 +61,18 @@
         if(response.IsSuccessStatusCode)
         {
             message = "Registration Successful";
+            toastClass = "toast-success";
+            StateHasChanged();
+            await Task.Delay(2000);
+            NavigationManager.NavigateTo("/login");
         }
         else
         {
             message = "Registration Failed";
+            toastClass = "toast-error";
+            StateHasChanged();
+            await Task.Delay(3000);
+            message = "";
         }
     }
 }
