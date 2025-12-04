@@ -10,13 +10,18 @@ namespace FoodDelivery.Server.Services
     public class UserService {
 
         private readonly FirestoreDb _firestore;
+        private readonly string _firebaseApiKey = "AIzaSyC1EHPs1TFl6tmmab3k_4187hH0ppLzh7I";
 
         public UserService() 
         {
+            // load admin credentials
+             
             var credential = GoogleCredential.FromFile(
             Path.Combine(AppContext.BaseDirectory, "firebase-adminsdk.json")
         );
 
+
+        // firestore connection
         var channel = new FirestoreClientBuilder
         {
             Credential = credential
@@ -49,7 +54,54 @@ namespace FoodDelivery.Server.Services
 
             return newUser.Uid;
         }
+        // login the registered user
+        public async Task<LoginResponse?> LoginUser(string email, string password)
+        {
+            var loadUser = new
+            {
+                email = email,
+                password = password,
+                returnSecureToken = true
+            };
+
+            using var client = new HttpClient();
+
+            //Firebase REST API endpoint for email /password login 
+            var response = await client.PostAsJsonAsync(
+                $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={_firebaseApiKey}",
+                loadUser
+            );
+
+            if(!response.IsSuccessStatusCode)
+            {
+                return null; //login failed
+            }
+
+            
+            var firebaseData = await response.Content.ReadFromJsonAsync<FirebaseLoginResult>();
+
+            return new LoginResponse
+            {
+                Token = firebaseData.idToken,
+                RefreshToken = firebaseData.refreshToken,
+                UserId = firebaseData.localId
+            };
+        }
     }
 
+    public class FirebaseLoginResult
+    {
+        public string? idToken {get; set;}
+        public string? refreshToken {get; set;}
+        public string? localId {get; set;}
+    }
+
+    public class LoginResponse
+    {
+        public string? Token {get; set;} // backend uses this to authorize requests
+        public string? RefreshToken {get; set;}  //user request a new token without the user login again and again
+        public string? UserId {get; set;}  //unique firebase user ID
+
+    }
    
 }

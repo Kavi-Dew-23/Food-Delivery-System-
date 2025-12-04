@@ -34,6 +34,16 @@ namespace FoodDelivery.Server.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login (LoginRequest req)
+        {
+            var result = await _userService.LoginUser(req.Email, req.Password);
+            if(result == null){
+                return BadRequest(new {message = "Invalid Email and Password"});
+            }
+            return Ok(result);
+        }
     }
 
     public class RegisterRequest
@@ -41,5 +51,11 @@ namespace FoodDelivery.Server.Controllers
         public string Name { get; set; } = "";
         public string Email { get; set; } = "";
         public string Password { get; set; } = ""; 
+    }
+
+    public class LoginRequest
+    {
+        public string Email { get; set;} = "";
+        public string Password {get; set;} = "";
     }
 }
