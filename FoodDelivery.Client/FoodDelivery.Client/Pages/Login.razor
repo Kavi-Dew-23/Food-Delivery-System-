@@ -26,27 +26,21 @@
         </p>
         
     </div>
-    @if (!string.IsNullOrEmpty(message))
-    {
-        <div class="toast show-toast">
-            @message
-        </div>
-    }
-    @if (true)
-    {
-        <div class="toast show-toast" style="background:red;">
-            DEBUG TOAST — should always be visible
-        </div>
-    }
-
 </div>
 
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="toast-top-right @toastClass">
+        @message
+    </div>
+}
 
 
 @code {
     string email = string.Empty;
     string password = string.Empty;
     string message = string.Empty;
+    string toastClass = string.Empty;
 
     private async Task LoginUser()
     {
@@ -61,16 +55,21 @@
         if(response.IsSuccessStatusCode)
         {
             message = "Login Successfully";
+            toastClass = "toast-success";
             StateHasChanged();
 
-            await Task.Delay(1500);
+            await Task.Delay(2000);
 
             NavigationManager.NavigateTo("/");
         }
         else
         {
             message = "Login Failed";
+            toastClass = "toast-error";
             StateHasChanged();
+            await Task.Delay(2000);
+
+            message = "";
         }
     }
 }
