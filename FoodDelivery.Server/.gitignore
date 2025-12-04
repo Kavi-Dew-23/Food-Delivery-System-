@@ -2,6 +2,7 @@
 bin/
 obj/
 .vs/
+.env
 
 # firebase credentials
 firebase-adminsdk.json

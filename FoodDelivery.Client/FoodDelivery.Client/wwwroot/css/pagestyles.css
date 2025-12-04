@@ -3,8 +3,153 @@
     background-size:cover;
     background-repeat:no-repeat;
     height:100vh;
-    width:100vw;
+    width:100%;
     display:flex;
     justify-content:center;
+    align-items:center;
+    z-index:1;
+}
+.login-card {
+    width: 450px;
+    height: 500px;
+    background-color: #333333;
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35px;
+    z-index: 1000;
+    margin:65px;
+    margin-left:25px;
+    position:static;
+    overflow:visible !important;
+}
+.login-card h3{
+    color:white;
+    margin-bottom:20px;
+    margin-top:20px;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
+}
 
+.form-group label {
+    display:block;
+    margin-bottom:8px;
+    font-size:16px;
+    color:floralwhite;
+    padding:10px;
+}
+.form-group input{
+    width:100%;
+    padding:10px;
+    align-content:center;
+    margin-bottom:15px;
+    border-radius:15px;
+    border:none;
+}
+
+.login-btn {
+    margin-top: 35px;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    background-color: #4747d1;
+    color: ghostwhite;
+    font-weight: 600;
+}
+
+    .login-btn:hover {
+        background-color: #5c5cd6;
+        color:  #bfbfbf;
+    }
+
+.register-text {
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+    color:antiquewhite;
+}
+.register-card {
+    width: 450px;
+    height: 550px;
+    background-color: #333333;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35px;
+    z-index: 1000;
+    margin: 65px;
+}
+    .register-card h3 {
+        color: white;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+.form-group-register label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: floralwhite;
+    padding: 10px;
+}
+.form-group-register input {
+    width: 100%;
+    padding: 10px;
+    align-content: center;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: none;
+}
+.register-btn {
+    margin-top: 30px;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    background-color: #4747d1;
+    color: ghostwhite;
+    font-weight: 600;
+}
+    .register-btn:hover {
+        background-color: #5c5cd6;
+        color: #bfbfbf;
+    }
+
+.login-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: antiquewhite;
+    margin-bottom:15px;
+}
+
+.toast-top-right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    z-index: 5000;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    animation: slideIn 0.4s ease-out;
+}
+.toast-success {
+    background: White;
+    color: cornflowerblue;
+}
+.toast-error{
+    background: White;
+    color: red;
 }
