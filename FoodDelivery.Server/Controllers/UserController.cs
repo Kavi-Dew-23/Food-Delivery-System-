@@ -1,7 +1,7 @@
 using FoodDelivery.Server.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using FoodDelivery.Models.UserModels;
 
 namespace FoodDelivery.Server.Controllers
 {
@@ -44,18 +44,5 @@ namespace FoodDelivery.Server.Controllers
             }
             return Ok(result);
         }
-    }
-
-    public class RegisterRequest
-    {
-        public string Name { get; set; } = "";
-        public string Email { get; set; } = "";
-        public string Password { get; set; } = ""; 
-    }
-
-    public class LoginRequest
-    {
-        public string Email { get; set;} = "";
-        public string Password {get; set;} = "";
     }
 }
