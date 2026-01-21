@@ -1,7 +1,39 @@
 ﻿@page "/"
+@using FoodDelivery.Client.Shared
+<link href="/css/pagestyles.css" rel="stylesheet" />
+@inject HttpClient Http
 
-<PageTitle>Home</PageTitle>
+<div class="top-row px-3 py-3">
+    <h1 class="top-row-heading">Restaurants</h1>
+    <div class="search-bar"></div>
+</div>
 
-<h1>Hello, world!</h1>
+<div class="restaurant-container">
+    @if(restaurants == null)
+    {
+        <p>Loading restaurants..</p>
+    }
+    else
+    {
+        @foreach (var resturant in restaurants)
+        {
+            <div class="rest-card">
+                <img src="@resturant.ImageUrl" alt="@resturant.Name" />
+                <h2>@resturant.Name</h2>
+                
+            </div>
+           
+        }
+    }
+</div>
 
-Welcome to your new app.
+@code{
+    List<Restaurants> restaurants = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        restaurants = await Http.GetFromJsonAsync<List<Restaurants>>(
+            "http://localhost:5130/api/restaurant"
+        );
+    }
+}

@@ -16,7 +16,7 @@ namespace FoodDelivery.Server.Controllers
                 new Restaurant
                 {
                     Id = 1,
-                    Name = "Pizza hut",
+                    Name = "Pizza Hut",
                     ImageUrl = "/images/restaurants/PizzaHut.svg",
                 },
                 new Restaurant
